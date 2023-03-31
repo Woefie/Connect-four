@@ -12,7 +12,7 @@ public:
 
   virtual ~IUser() = default;
   virtual const uint32_t GetPlacement() = 0;
-
+  
   const uint8_t GetNumber(){
     return user_number;
   }

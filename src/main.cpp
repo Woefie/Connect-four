@@ -2,7 +2,6 @@
 #include <string>
 
 #include "game.h"
-#include "board.h"
 
 auto main() -> int
 {

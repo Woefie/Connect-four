@@ -6,6 +6,9 @@ class Player : public IUser{
   Player()=default;
   Player(uint8_t);
 
+  /**
+   * Get players input between 0 and 6
+  */
   const uint32_t GetPlacement()  override;
 
 

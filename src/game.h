@@ -17,13 +17,19 @@ public:
   Game& operator=(const Game& other) = delete;
   Game& operator=(Game&& other) = delete;
 
+  /**
+   * Begin connect four game
+   * Ask user how many player will be playing
+  */
   void Begin();
 
 private:
+/**
+ * Game loop
+*/
   void Loop();
-  uint8_t state {0};
-
-  std::array<std::unique_ptr<IUser>, PLAYERCOUNT> players;
 
   Board board;
+  uint8_t state {0};
+  std::array<std::unique_ptr<IUser>, PLAYERCOUNT> players;
 };

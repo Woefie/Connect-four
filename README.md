@@ -1,4 +1,4 @@
-# connect-four
+# Connect-four
 
 This is the connect-four project for the reqruitment process of **S[&]T**.
 
