@@ -1,0 +1,22 @@
+Detecting compiler hash for triplet x64-linux...
+The following packages will be built and installed:
+    catch2[core]:x64-linux -> 3.3.1 -- /home/woefie/vcpkg/buildtrees/versioning_/versions/catch2/7d7bef305b7affebc6f3ccacd12874ebd4fbfc50
+Restored 1 package(s) from /home/woefie/.cache/vcpkg/archives in 190.3 ms. Use --debug to see more details.
+Installing 1/1 catch2:x64-linux...
+Elapsed time to handle catch2:x64-linux: 2.876 s
+Total install time: 3.067 s
+The package fmt provides CMake targets:
+
+    find_package(fmt CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE fmt::fmt)
+
+    # Or use the header-only version
+    find_package(fmt CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE fmt::fmt-header-only)
+
+catch2 provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(Catch2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
+

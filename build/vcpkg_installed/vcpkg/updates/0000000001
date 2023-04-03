@@ -1,0 +1,9 @@
+Package: catch2
+Version: 3.3.1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-linux
+Multi-Arch: same
+Abi: dcd1c77f4cbaa4ac2faf289fc8fcf853f49004e6fce0c22e3630b5d96afa43db
+Description: A modern, header-only test framework for unit testing.
+Type: Port
+Status: install ok installed

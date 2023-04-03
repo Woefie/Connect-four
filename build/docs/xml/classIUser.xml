@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classIUser" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>IUser</compoundname>
+    <derivedcompoundref refid="classComputer" prot="public" virt="non-virtual">Computer</derivedcompoundref>
+    <derivedcompoundref refid="classPlayer" prot="public" virt="non-virtual">Player</derivedcompoundref>
+    <includes refid="iuser_8h" local="no">iuser.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classIUser_1a32f72d3ebb68ee72a79943ef1727d5d8" prot="protected" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t IUser::user_number</definition>
+        <argsstring></argsstring>
+        <name>user_number</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/iuser.h" line="26" column="11" bodyfile="src/iuser.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIUser_1affd20db9eedd91b42826975851ef9e02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>IUser::IUser</definition>
+        <argsstring>()=default</argsstring>
+        <name>IUser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/iuser.h" line="14" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classIUser_1a9145ae94d264ae2ea024bb6d711d0a30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>IUser::IUser</definition>
+        <argsstring>(uint8_t number)</argsstring>
+        <name>IUser</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/iuser.h" line="15" column="3" bodyfile="src/iuser.h" bodystart="15" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classIUser_1af8f7553c64d8551e390fc28f1f214191" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual IUser::~IUser</definition>
+        <argsstring>()=default</argsstring>
+        <name>~IUser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/iuser.h" line="19" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classIUser_1ab978a37d7bbeeae9576ec1717cbea6c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>const uint32_t</type>
+        <definition>virtual const uint32_t IUser::GetPlacement</definition>
+        <argsstring>()=0</argsstring>
+        <name>GetPlacement</name>
+        <reimplementedby refid="classComputer_1ad8edf6b34b2c43eed9c7d1d1ab40f944">GetPlacement</reimplementedby>
+        <reimplementedby refid="classPlayer_1a7c34b7b291be2085215a74ea65815e32">GetPlacement</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/iuser.h" line="20" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classIUser_1a67d588e6d23dce9db6a71024a9e0f0fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const uint8_t</type>
+        <definition>const uint8_t IUser::GetNumber</definition>
+        <argsstring>()</argsstring>
+        <name>GetNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/iuser.h" line="22" column="18" bodyfile="src/iuser.h" bodystart="22" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Interface class for the user that play the game of connect four This is used so the derived classes <ref refid="classPlayer" kindref="compound">Player</ref> and <ref refid="classComputer" kindref="compound">Computer</ref> can be called. from the game class </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Computer</label>
+        <link refid="classComputer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>IUser</label>
+        <link refid="classIUser"/>
+      </node>
+      <node id="3">
+        <label>Player</label>
+        <link refid="classPlayer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="src/iuser.h" line="11" column="1" bodyfile="src/iuser.h" bodystart="11" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classIUser_1a67d588e6d23dce9db6a71024a9e0f0fb" prot="public" virt="non-virtual"><scope>IUser</scope><name>GetNumber</name></member>
+      <member refid="classIUser_1ab978a37d7bbeeae9576ec1717cbea6c7" prot="public" virt="pure-virtual"><scope>IUser</scope><name>GetPlacement</name></member>
+      <member refid="classIUser_1affd20db9eedd91b42826975851ef9e02" prot="public" virt="non-virtual"><scope>IUser</scope><name>IUser</name></member>
+      <member refid="classIUser_1a9145ae94d264ae2ea024bb6d711d0a30" prot="public" virt="non-virtual"><scope>IUser</scope><name>IUser</name></member>
+      <member refid="classIUser_1a32f72d3ebb68ee72a79943ef1727d5d8" prot="protected" virt="non-virtual"><scope>IUser</scope><name>user_number</name></member>
+      <member refid="classIUser_1af8f7553c64d8551e390fc28f1f214191" prot="public" virt="virtual"><scope>IUser</scope><name>~IUser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

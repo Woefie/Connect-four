@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Projects/connect-four/build/test/connect-four_test_tests-b12d07c.cmake")
+  include("/mnt/c/Projects/connect-four/build/test/connect-four_test_tests-b12d07c.cmake")
+else()
+  add_test(connect-four_test_NOT_BUILT-b12d07c connect-four_test_NOT_BUILT-b12d07c)
+endif()

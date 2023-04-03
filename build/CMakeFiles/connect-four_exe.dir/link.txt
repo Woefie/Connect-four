@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/connect-four_exe.dir/src/main.cpp.o CMakeFiles/connect-four_lib.dir/src/board.cpp.o CMakeFiles/connect-four_lib.dir/src/computer.cpp.o CMakeFiles/connect-four_lib.dir/src/player.cpp.o CMakeFiles/connect-four_lib.dir/src/game.cpp.o -o connect-four  vcpkg_installed/x64-linux/lib/libfmt.a 

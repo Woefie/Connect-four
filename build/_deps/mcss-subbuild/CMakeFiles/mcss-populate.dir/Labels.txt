@@ -1,0 +1,13 @@
+# Target labels
+ mcss-populate
+# Source files and their labels
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/CMakeFiles/mcss-populate
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/CMakeFiles/mcss-populate.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/CMakeFiles/mcss-populate-complete.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-build.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-configure.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-download.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-install.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-mkdir.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-patch.rule
+/mnt/c/Projects/connect-four/build/_deps/mcss-subbuild/mcss-populate-prefix/src/mcss-populate-stamp/mcss-populate-test.rule
