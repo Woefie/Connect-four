@@ -9,7 +9,7 @@ class Computer : public IUser{
   /**
    * Return a randomised number between 0 and 6
   */
-  const uint32_t GetPlacement()  override;
+  [[nodiscard]] const uint32_t GetPlacement()  override;
 
 
 };

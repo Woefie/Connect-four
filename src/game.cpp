@@ -82,4 +82,5 @@ void Game::Loop()
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
   }
   board.PrintBoard();
+  fmt::print("It is a draw!!!\n");
 }

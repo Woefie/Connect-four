@@ -12,7 +12,7 @@ add_custom_target(
 )
 add_dependencies(run-exe connect-four_exe)
 
-option(BUILD_MCSS_DOCS "Build documentation using Doxygen and m.css" OFF)
+option(BUILD_MCSS_DOCS "Build documentation using Doxygen and m.css" ON)
 if(BUILD_MCSS_DOCS)
   include(cmake/docs.cmake)
 endif()

@@ -20,21 +20,28 @@ public:
 
   /**
    * Set the puck on the board
+   * @param[in, out] point will be used for placing a puck on the board
+   * @param[in] player value to be put on the board
+   * 
+   * @return true if value was succesfull in placing the puck
   */
-  bool SetPuck(std::pair<uint8_t, uint8_t>& point, uint8_t player);
+  [[nodiscard]] bool SetPuck(std::pair<uint8_t, uint8_t>& point, uint8_t player);
 
   /**
    * Check if last set puck has a winning position
+   * @param[in] point containing coordinates of a placed puck
+   * @return true if last point was winnig
   */
-  bool CheckForWin(const std::pair<uint8_t, uint8_t> point);
+  [[nodiscard]] bool CheckForWin(const std::pair<uint8_t, uint8_t> point);
+  
   /**
    * Check if the board is full
-   * @return If full return true else false
+   * @return true if full
   */
-  bool IsFull();
+  [[nodiscard]] bool IsFull();
 
   /**
-   * Print out the board
+   * Print out a stylized connect four board on the command line
   */
   void PrintBoard();
 

@@ -2,6 +2,12 @@
 #include "board.h"
 
 
+
+
+/**
+ * Interface class for the user that play the game of connect four
+ * This is used so the derived classes Player and Computer can be called. from the game class
+*/
 class IUser{
 public:
 
@@ -13,7 +19,7 @@ public:
   virtual ~IUser() = default;
   virtual const uint32_t GetPlacement() = 0;
   
-  const uint8_t GetNumber(){
+  [[nodiscard]] const uint8_t GetNumber(){
     return user_number;
   }
 protected:

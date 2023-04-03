@@ -9,7 +9,7 @@ class Player : public IUser{
   /**
    * Get players input between 0 and 6
   */
-  const uint32_t GetPlacement()  override;
+  [[nodiscard]] const uint32_t GetPlacement() override;
 
 
 };

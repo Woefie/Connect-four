@@ -7,6 +7,11 @@
 #include "player.h"
 
 constexpr uint8_t PLAYERCOUNT {2};
+
+/**
+ * Game class this contains the startup of connect four by asking how many players should play 
+ * After this the game will loop until the game reaches a end
+*/
 class Game
 {
 public:
@@ -20,12 +25,16 @@ public:
   /**
    * Begin connect four game
    * Ask user how many player will be playing
+   * And initialized said players
   */
   void Begin();
 
 private:
 /**
  * Game loop
+ * Ask user for input
+ * Check if the puck can be placed in said position
+ * Check if the last puck was winning
 */
   void Loop();
 
