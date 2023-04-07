@@ -109,7 +109,7 @@ void Board::PrintBoard()
 {
   system(CLEAR.data());
   
-  fmt::print("╔{:═>{}}╗\n", "", BOARD_WIDTH);
+  fmt::print("\n╔{:═>{}}╗\n", "", BOARD_WIDTH);
 
   std::for_each(board.rbegin(),
                 board.rend(),

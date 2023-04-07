@@ -4,6 +4,17 @@ This is the connect-four project for the reqruitment process of **S[&]T**.
 
 ## Building and installing
 
+Tested on Build on WSL (ubuntu 22.04)
+dependcy install instructions:
+
+First follow install instruction from [vcpkg](https://vcpkg.io/en/getting-started.html) 
+
+```sh
+sudo apt install build-essential
+sudo apt install pkg-config
+```
+
+
 See the [BUILDING](BUILDING.md) document.
 
 ## TODO's

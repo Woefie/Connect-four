@@ -6,7 +6,9 @@
 
 #include "game.h"
 
-#include <fmt/printf.h>
+#include <fmt/color.h>
+#include <fmt/core.h>
+
 
 void Game::Begin()
 {
@@ -15,29 +17,36 @@ void Game::Begin()
   fmt::print("Enter the number of players 0 and 2: ");
   std::cin >> input;
 
-  while (input > 2) {
+   while (input > 2|| std::cin.fail()) {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     fmt::print("Invalid input. Please enter a number between 0 and 2: ");
     std::cin >> input;
   }
 
-  // Make the correct users. 
+  // Make the correct users.
 
   switch (input) {
     case 0:
       players.at(0) = std::make_unique<Computer>(1);
       players.at(1) = std::make_unique<Computer>(2);
+      fmt::print("The two computers will battle to the death!!!!");
       break;
     case 1:
       players.at(0) = std::make_unique<Player>(1);
       players.at(1) = std::make_unique<Computer>(2);
+      fmt::print("You are player 1 in red : {} \n", fmt::styled("@", fmt::fg(fmt::color::red)));
       break;
     case 2:
       players.at(0) = std::make_unique<Player>(1);
       players.at(1) = std::make_unique<Player>(2);
+      fmt::print("Player 1 in red : {} \n", fmt::styled("@", fmt::fg(fmt::color::red)));
+      fmt::print("Player 2 in yellow : {} \n", fmt::styled("0", fmt::fg(fmt::color::yellow)));
       break;
     default:
       players.at(0) = std::make_unique<Player>(1);
       players.at(1) = std::make_unique<Computer>(2);
+      fmt::print("You are player 1 in red : {} \n", fmt::styled("@", fmt::fg(fmt::color::red)));
       break;
   }
 
