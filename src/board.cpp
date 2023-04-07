@@ -107,22 +107,25 @@ auto Board::CheckForWin(std::pair<uint8_t, uint8_t> point) -> bool
 
 void Board::PrintBoard()
 {
+  // clear board
   system(CLEAR.data());
   
   fmt::print("\n╔{:═>{}}╗\n", "", BOARD_WIDTH);
 
+  // Loop over each element of the board
+  // Reverse loop so 0,0 is at the bottom
   std::for_each(board.rbegin(),
                 board.rend(),
                 [this](auto& row)
                 {
                   fmt::print("║");
                   for (const auto& elem : row) {
-                    if (elem == 1) {
+                    if (elem == 1) {  //print player 1
                       fmt::print(fg(fmt::color::red), "@");
-                    } else if (elem == 2) {
+                    } else if (elem == 2) {  //print player 2
                       fmt::print(fg(fmt::color::yellow), "0");
 
-                    } else {
+                    } else {  // if point is empty print -
                       fmt::print("-");
                     }
                   }
