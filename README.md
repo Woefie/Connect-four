@@ -1,6 +1,6 @@
 # Connect-four
 
-This is the connect-four project for the reqruitment process of **S[&]T**.
+This is the connect-four project for the recruitment process of **S[&]T**.
 
 ## Building and installing
 
