@@ -7,7 +7,7 @@ This is the connect-four project for the recruitment process of **S[&]T**.
 Tested on Build on WSL (ubuntu 22.04)
 dependcy install instructions:
 
-First follow install instruction from [vcpkg](https://vcpkg.io/en/getting-started.html) 
+First follow install instruction from [vcpkg](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-powershell)
 
 ```sh
 sudo apt install build-essential
