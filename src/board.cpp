@@ -13,7 +13,7 @@ constexpr std::string_view CLEAR {"cls"};
 constexpr std::string_view CLEAR {"clear"};
 #endif
 
-auto Board::SetPuck(std::pair<uint8_t, uint8_t>& point, uint8_t player) ->bool
+auto Board::set_puck(std::pair<uint8_t, uint8_t>& point, uint8_t player) ->bool
 {
   point.first = 0;  // Always start at the bottom
 
@@ -24,7 +24,7 @@ auto Board::SetPuck(std::pair<uint8_t, uint8_t>& point, uint8_t player) ->bool
 
   // Check if position !=0 this means that it is a valid placeable spot
   // if not valid add 1 to row 
-  while (board.at(point.first).at(point.second) != 0) {
+  while (m_board.at(point.first).at(point.second) != 0) {
     point.first++;
     if (point.first >= BOARD_HEIGHT) {
       return false;
@@ -32,15 +32,15 @@ auto Board::SetPuck(std::pair<uint8_t, uint8_t>& point, uint8_t player) ->bool
   }
 
   // Set puck
-  board.at(point.first).at(point.second) = player;
-  last_player = player;
+  m_board.at(point.first).at(point.second) = player;
+  m_last_player = player;
   return true;
 }
 
-auto Board::IsFull() -> bool
+auto Board::is_full() -> bool
 {
 // Scan every element(puck) of the board. If all not 0 then its full
-  for (const auto& row : board) {
+  for (const auto& row : m_board) {
     for (const auto& elem : row) {
       if (elem == 0) {
         return false;
@@ -50,7 +50,7 @@ auto Board::IsFull() -> bool
   return true;
 }
 
-auto Board::CheckForWin(std::pair<uint8_t, uint8_t> point) -> bool
+auto Board::check_for_win(std::pair<uint8_t, uint8_t> point) -> bool
 {
   // Check all directions for the current stone
   for (int dr = -1; dr <= 1; dr++) {  // dr = delta row
@@ -63,15 +63,15 @@ auto Board::CheckForWin(std::pair<uint8_t, uint8_t> point) -> bool
       // check connected stones on the left side direction
       int connected = 0;
       for (int i = -1; i >= -3; i--) {
-        int r = point.first + i * dr;
-        int c = point.second + i * dc;
+        int r = point.first + (i * dr);
+        int c = point.second + (i * dc);
 
         // check if we don't run out of bounds first
         if (r < 0 || r >= BOARD_HEIGHT || c < 0 || c >= BOARD_WIDTH) {
           break;
         }
 
-        if (board.at(r).at(c) == last_player) {
+        if (m_board.at(r).at(c) == m_last_player) {
           ++connected;
         } else {
           break;
@@ -80,15 +80,15 @@ auto Board::CheckForWin(std::pair<uint8_t, uint8_t> point) -> bool
 
       // now check only necessary remaining values on the right side
       for (int i = 1; i <= 3; i++) {
-        int r = point.first + i * dr;
-        int c = point.second + i * dc;
+        int r = point.first + (i * dr);
+        int c = point.second + (i * dc);
 
         // check if we don't run out of bounds first
         if (r < 0 || r >= BOARD_HEIGHT || c < 0 || c >= BOARD_WIDTH) {
           break;
         }
 
-        if (board.at(r).at(c) == last_player) {
+        if (m_board.at(r).at(c) == m_last_player) {
           ++connected;
         } else {
           break;
@@ -105,7 +105,7 @@ auto Board::CheckForWin(std::pair<uint8_t, uint8_t> point) -> bool
   return false;
 }
 
-void Board::PrintBoard()
+void Board::print_board()
 {
   // clear board
   system(CLEAR.data());
@@ -114,8 +114,8 @@ void Board::PrintBoard()
 
   // Loop over each element of the board
   // Reverse loop so 0,0 is at the bottom
-  std::for_each(board.rbegin(),
-                board.rend(),
+  std::for_each(m_board.rbegin(),
+                m_board.rend(),
                 [this](auto& row)
                 {
                   fmt::print("║");
@@ -133,6 +133,6 @@ void Board::PrintBoard()
                 });
 
   fmt::print("╚{:═>{}}╝\n", "", BOARD_WIDTH);
-  fmt::print(" 0123456 \n");
+  fmt::print(" 1234567 \n");
 }
 

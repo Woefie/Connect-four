@@ -1,15 +1,15 @@
 #pragma once
-#include "iuser.h"
+#include "player.h"
 
-class Computer : public IUser{
+class Computer : public Player{
   public:
   Computer()=default;
-  Computer(uint8_t);
+  explicit Computer(uint8_t);
 
   /**
    * Return a randomised number between 0 and 6
   */
-  [[nodiscard]] const uint32_t GetPlacement()  override;
+  [[nodiscard]] auto get_placement() -> const uint32_t  ;
 
 
 };

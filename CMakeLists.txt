@@ -19,7 +19,7 @@ add_library(
     connect-four_lib OBJECT
     src/board.cpp
     src/computer.cpp
-    src/player.cpp
+    src/human_player.cpp
     src/game.cpp
 )
 

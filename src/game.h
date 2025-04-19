@@ -5,6 +5,7 @@
 #include "board.h"
 #include "computer.h"
 #include "player.h"
+#include "human_player.h"
 
 constexpr uint8_t PLAYERCOUNT {2};
 
@@ -16,18 +17,23 @@ class Game
 {
 public:
   Game() = default;
+  ~Game() =default;
+  explicit Game(std::array<std::unique_ptr<Player>, PLAYERCOUNT> m_players)
+      : m_players(std::move(m_players))
+  {
+  }
   // Delete copy and move constructors
   Game(const Game& other) = delete;
   Game(Game&& other) = delete;
-  Game& operator=(const Game& other) = delete;
-  Game& operator=(Game&& other) = delete;
+  auto operator=(const Game& other) -> Game& = delete;
+  auto operator=(Game&& other) -> Game& = delete;
 
   /**
    * Begin connect four game
    * Ask user how many player will be playing
    * And initialized said players
   */
-  void Begin();
+  void begin();
 
 private:
 /**
@@ -36,9 +42,9 @@ private:
  * Check if the puck can be placed in said position
  * Check if the last puck was winning
 */
-  void Loop();
+  void loop();
 
-  Board board;
-  uint8_t state {0};
-  std::array<std::unique_ptr<IUser>, PLAYERCOUNT> players;
+  Board m_board;
+  uint8_t m_state {0};
+  std::array<std::unique_ptr<Player>, PLAYERCOUNT> m_players;
 };

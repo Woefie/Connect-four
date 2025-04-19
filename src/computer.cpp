@@ -5,12 +5,12 @@
 #include "board.h"
 
 Computer::Computer(uint8_t number)
-    : IUser(number)
+    : Player(number)
 {
 }
 
 
-const uint32_t Computer::GetPlacement()
+auto Computer::get_placement() -> const uint32_t
 {
   std::random_device rd;
   std::mt19937 gen(rd());

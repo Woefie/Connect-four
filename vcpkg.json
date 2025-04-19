@@ -1,8 +1,9 @@
 {
+  "version-semver": "0.1.0",
   "dependencies": [
     {
       "name": "fmt",
-      "version>=": "9.1.0#1"
+      "version>=": "11.0.2#1"
     }
   ],
   "default-features": [],
@@ -12,10 +13,10 @@
       "dependencies": [
         {
           "name": "catch2",
-          "version>=": "3.3.1"
+          "version>=": "3.7.1"
         }
       ]
     }
   },
-  "builtin-baseline": "93895b28ea7bc8cda10f156c5d336f3fc070f8b1"
+  "builtin-baseline": "d7112d1a4fb50410d3639f5f586972591d848beb"
 }
