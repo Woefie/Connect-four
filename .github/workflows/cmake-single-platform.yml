@@ -33,7 +33,7 @@ jobs:
       run: cmake -P cmake/spell.cmake
 
   coverage:
-    needs: [lint]
+    
 
     runs-on: ubuntu-24.04
 
@@ -75,7 +75,7 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
 
   sanitize:
-    needs: [lint]
+    
 
     runs-on: ubuntu-24.04
 
@@ -108,7 +108,7 @@ jobs:
       run: ctest --output-on-failure --no-tests=error -j 2
 
   test:
-    needs: [lint]
+  
 
     strategy:
       matrix:
