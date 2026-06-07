@@ -1,32 +1,36 @@
-#pragma once
-#include "board.h"
+#ifndef PLAYER_H
+#define PLAYER_H
+
+#include <cstdint>
 
 
 
 
 /**
  * Interface class for the user that play the game of connect four
- * This is used so the derived classes Player and Computer can be called. from the game class
+ * This is used so the derived classes Participent and Computer can be called. from the game class
 */
-class Player{
+class Participent{
 public:
 
-  Player()=default;
-  Player(const Player&) = default;
-  Player(Player&&) = delete;
-  auto operator=(const Player&) -> Player& = default;
-  auto operator=(Player&&) -> Player& = delete;
-  explicit Player(uint8_t number)
+  Participent()=default;
+  Participent(const Participent&) = default;
+  Participent(Participent&&) = delete;
+  auto operator=(const Participent&) -> Participent& = default;
+  auto operator=(Participent&&) -> Participent& = delete;
+  explicit Participent(uint8_t number)
       : m_user_number(number)
   {
   }
 
-  virtual ~Player() = default;
+  virtual ~Participent() = default;
   virtual auto get_placement() -> const uint32_t = 0;
   
-  [[nodiscard]] auto get_number() const -> const uint8_t{
+  [[nodiscard]] auto get_number() const -> uint8_t{
     return m_user_number;
   }
-protected:
+private:
   uint8_t m_user_number{0};
 };
+
+#endif // PLAYER_H

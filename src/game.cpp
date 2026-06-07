@@ -1,10 +1,20 @@
 #include <iostream>
 #include <thread>
+#include <variant>
+#include <cstdint>
+#include <array>
+#include <limits>
+#include <utility>
 
 #include "game.h"
 
 #include <fmt/color.h>
 #include <fmt/core.h>
+#include <fmt/format.h>
+#include <fmt/ranges.h>
+
+
+
 
 void Game::begin()
 {
@@ -24,24 +34,24 @@ void Game::begin()
 
   switch (input) {
     case 0:
-      m_players.at(0) = std::make_unique<Computer>(1);
-      m_players.at(1) = std::make_unique<Computer>(2);
+      m_players.at(0) = Computer(1);
+      m_players.at(1) = Computer(2);
       fmt::print("The two computers will battle to the death!!!!");
       break;
     case 1:
-      m_players.at(0) = std::make_unique<HumanPlayer>(1);
-      m_players.at(1) = std::make_unique<Computer>(2);
+      m_players.at(0) = HumanPlayer(1);
+      m_players.at(1) = Computer(2);
       fmt::print("You are player 1 in red : {} \n", fmt::styled("@", fmt::fg(fmt::color::red)));
       break;
     case 2:
-      m_players.at(0) = std::make_unique<HumanPlayer>(1);
-      m_players.at(1) = std::make_unique<HumanPlayer>(2);
+      m_players.at(0) = HumanPlayer(1);
+      m_players.at(1) = HumanPlayer(2);
       fmt::print("HumanPlayer 1 in red : {} \n", fmt::styled("@", fmt::fg(fmt::color::red)));
       fmt::print("HumanPlayer 2 in yellow : {} \n", fmt::styled("0", fmt::fg(fmt::color::yellow)));
       break;
     default:
-      m_players.at(0) = std::make_unique<HumanPlayer>(1);
-      m_players.at(1) = std::make_unique<Computer>(2);
+      m_players.at(0) = HumanPlayer(1);
+      m_players.at(1) = Computer(2);
       fmt::print("You are player 1 in red : {} \n", fmt::styled("@", fmt::fg(fmt::color::red)));
       break;
   }
@@ -61,15 +71,17 @@ void Game::loop()
     // Ask player or computer for a column number
     // Put puck in the board if it is a valid placement
     while (!valid) {
-      point.second = static_cast<uint8_t>(m_players.at(m_state)->get_placement());
-      valid = m_board.set_puck(point, m_players.at(m_state)->get_number());
+      point.second = std::visit([this](auto& player) { return player.get_placement(); }, m_players.at(m_state));
+      
+      valid = m_board.set_puck(point, std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
+      
     }
 
     // Check the latest puck placement if it was winning
     // Return if player won
     if (m_board.check_for_win(point)) {
       m_board.print_board();
-      fmt::print("HumanPlayer {} Won !!!\n", m_players.at(m_state)->get_number());
+      fmt::print("HumanPlayer {} Won !!!\n", std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
       return;
     }
 

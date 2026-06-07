@@ -3,7 +3,7 @@
 
 auto main() -> int
 {
-  Game g;
-  g.begin();
+  Game game;
+  game.begin();
   return 0;
 }

@@ -1,13 +1,14 @@
 #include <iostream>
 #include <limits>
 
-#include "human_player.h"
-
 #include <fmt/printf.h>
 #include <fmt/format.h>
 
-HumanPlayer::HumanPlayer(uint8_t number)
-    : Player(number)
+#include "human_player.h"
+#include "board.h"
+
+
+HumanPlayer::HumanPlayer(uint8_t number) : Participent(number)
 {
 }
 

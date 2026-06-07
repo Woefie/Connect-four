@@ -1,13 +1,15 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 
-#include <memory>
+#include <variant>
 
 #include "board.h"
 #include "computer.h"
-#include "player.h"
 #include "human_player.h"
 
 constexpr uint8_t PLAYERCOUNT {2};
+
+using Player = std::variant<HumanPlayer, Computer>;
 
 /**
  * Game class this contains the startup of connect four by asking how many players should play 
@@ -18,8 +20,8 @@ class Game
 public:
   Game() = default;
   ~Game() =default;
-  explicit Game(std::array<std::unique_ptr<Player>, PLAYERCOUNT> m_players)
-      : m_players(std::move(m_players))
+  explicit Game(std::array<Player, PLAYERCOUNT> players)
+      : m_players(std::move(players))
   {
   }
   // Delete copy and move constructors
@@ -46,5 +48,7 @@ private:
 
   Board m_board;
   uint8_t m_state {0};
-  std::array<std::unique_ptr<Player>, PLAYERCOUNT> m_players;
+  std::array<Player, PLAYERCOUNT> m_players;
 };
+
+#endif // GAME_H

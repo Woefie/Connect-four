@@ -4,8 +4,7 @@
 
 #include "board.h"
 
-Computer::Computer(uint8_t number)
-    : Player(number)
+Computer::Computer(uint8_t number) : Participent(number)
 {
 }
 

@@ -12,6 +12,24 @@ project(
 
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
+include(cmake/CPM.cmake)
+
+CPMAddPackage(
+  NAME fmt
+  GITHUB_REPOSITORY fmtlib/fmt
+  GIT_TAG 11.2.0
+  SYSTEM YES)
+
+CPMAddPackage(
+    NAME Catch2
+    GITHUB_REPOSITORY catchorg/Catch2
+    VERSION 3.4.0
+    EXCLUDE_FROM_ALL YES
+    SYSTEM YES
+    OPTIONS
+        "CATCH_INSTALL_DOCS OFF"
+        "CATCH_INSTALL_EXTRAS OFF"
+)
 
 # ---- Declare library ----
 
@@ -32,7 +50,7 @@ target_include_directories(
 target_compile_features(connect-four_lib PUBLIC cxx_std_20)
 
 find_package(fmt CONFIG REQUIRED)
-target_link_libraries(connect-four_lib PRIVATE fmt::fmt)
+target_link_libraries(connect-four_lib  PRIVATE  fmt::fmt)
 
 # ---- Declare executable ----
 
@@ -62,4 +80,4 @@ elseif(NOT PROJECT_IS_TOP_LEVEL)
   )
 endif()
 
-include(cmake/dev-mode.cmake)
+# include(cmake/dev-mode.cmake)

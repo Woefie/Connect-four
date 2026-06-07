@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BOARD_H
+#define BOARD_H
 
 #include <array>
 #include <utility>
@@ -51,3 +52,5 @@ private:
   uint8_t m_last_player{};
   std::array<std::array<uint8_t, BOARD_WIDTH>, BOARD_HEIGHT> m_board {0};
 };
+
+#endif // BOARD_H
