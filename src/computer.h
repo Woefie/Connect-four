@@ -13,7 +13,7 @@ public:
   explicit Computer(uint8_t);
 
   /**
-   * Return a randomised number between 0 and 6
+   * Return a randomized number between 0 and 6
    */
   [[nodiscard]] auto get_placement() -> uint32_t override;
 };
