@@ -1,10 +1,10 @@
-#include <iostream>
-#include <thread>
-#include <variant>
-#include <cstdint>
 #include <array>
+#include <cstdint>
+#include <iostream>
 #include <limits>
+#include <thread>
 #include <utility>
+#include <variant>
 
 #include "game.h"
 
@@ -12,9 +12,6 @@
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
-
-
-
 
 void Game::begin()
 {
@@ -72,7 +69,7 @@ void Game::loop()
     // Put puck in the board if it is a valid placement
     while (!valid) {
       auto column = std::visit([this](auto& player) { return player.get_placement(); }, m_players.at(m_state));
-      
+
       auto result = m_board.set_puck(column, std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
       if (result) {
         point = *result;

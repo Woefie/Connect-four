@@ -116,24 +116,23 @@ void Board::print_board()
   // Loop over each element of the board
   // Reverse loop so 0,0 is at the bottom
   std::ranges::for_each(std::ranges::reverse_view(m_board),
-               
-                [this](auto& row)
-                {
-                  fmt::print("║");
-                  for (const auto& elem : row) {
-                    if (elem == 1) {  // print player 1
-                      fmt::print(fg(fmt::color::red), "@");
-                    } else if (elem == 2) {  // print player 2
-                      fmt::print(fg(fmt::color::yellow), "0");
 
-                    } else {  // if point is empty print -
-                      fmt::print("-");
-                    }
-                  }
-                  fmt::print("║\n");
-                });
+                        [this](auto& row)
+                        {
+                          fmt::print("║");
+                          for (const auto& elem : row) {
+                            if (elem == 1) {  // print player 1
+                              fmt::print(fg(fmt::color::red), "@");
+                            } else if (elem == 2) {  // print player 2
+                              fmt::print(fg(fmt::color::yellow), "0");
+
+                            } else {  // if point is empty print -
+                              fmt::print("-");
+                            }
+                          }
+                          fmt::print("║\n");
+                        });
 
   fmt::print("╚{:═>{}}╝\n", "", BOARD_WIDTH);
   fmt::print(" 1234567 \n");
-
 }

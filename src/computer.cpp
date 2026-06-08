@@ -4,10 +4,10 @@
 
 #include "board.h"
 
-Computer::Computer(uint8_t number) : Participent(number)
+Computer::Computer(uint8_t number)
+    : Participent(number)
 {
 }
-
 
 auto Computer::get_placement() -> uint32_t
 {

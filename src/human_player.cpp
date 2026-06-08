@@ -1,14 +1,15 @@
 #include <iostream>
 #include <limits>
 
-#include <fmt/printf.h>
-#include <fmt/format.h>
-
 #include "human_player.h"
+
+#include <fmt/format.h>
+#include <fmt/printf.h>
+
 #include "board.h"
 
-
-HumanPlayer::HumanPlayer(uint8_t number) : Participent(number)
+HumanPlayer::HumanPlayer(uint8_t number)
+    : Participent(number)
 {
 }
 
@@ -18,7 +19,7 @@ auto HumanPlayer::get_placement() -> uint32_t
   fmt::print("Enter a number between 1 and 7: ");
   std::cin >> input;
 
-  while ( input < 1 || input > BOARD_WIDTH|| std::cin.fail()) {
+  while (input < 1 || input > BOARD_WIDTH || std::cin.fail()) {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     fmt::print("Invalid input. Please enter a number between 1 and 7: ");
@@ -26,5 +27,5 @@ auto HumanPlayer::get_placement() -> uint32_t
   }
 
   fmt::print("Input accepted: {:x}\n", input);
-  return input-1;
+  return input - 1;
 }

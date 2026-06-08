@@ -12,14 +12,14 @@ constexpr uint8_t PLAYERCOUNT {2};
 using Player = std::variant<HumanPlayer, Computer>;
 
 /**
- * Game class this contains the startup of connect four by asking how many players should play 
+ * Game class this contains the startup of connect four by asking how many players should play
  * After this the game will loop until the game reaches a end
-*/
+ */
 class Game
 {
 public:
   Game() = default;
-  ~Game() =default;
+  ~Game() = default;
   explicit Game(std::array<Player, PLAYERCOUNT> players)
       : m_players(std::move(players))
   {
@@ -34,16 +34,16 @@ public:
    * Begin connect four game
    * Ask user how many player will be playing
    * And initialized said players
-  */
+   */
   void begin();
 
 private:
-/**
- * Game loop
- * Ask user for input
- * Check if the puck can be placed in said position
- * Check if the last puck was winning
-*/
+  /**
+   * Game loop
+   * Ask user for input
+   * Check if the puck can be placed in said position
+   * Check if the last puck was winning
+   */
   void loop();
 
   Board m_board;
@@ -51,4 +51,4 @@ private:
   std::array<Player, PLAYERCOUNT> m_players;
 };
 
-#endif // GAME_H
+#endif  // GAME_H
