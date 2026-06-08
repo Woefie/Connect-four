@@ -17,18 +17,22 @@ include(cmake/CPM.cmake)
 CPMAddPackage(
   NAME fmt
   GITHUB_REPOSITORY fmtlib/fmt
-  GIT_TAG 11.2.0
+  GIT_TAG 12.1.0
   SYSTEM YES)
 
 CPMAddPackage(
     NAME Catch2
     GITHUB_REPOSITORY catchorg/Catch2
-    VERSION 3.4.0
+    VERSION 3.15.0
     EXCLUDE_FROM_ALL YES
     SYSTEM YES
     OPTIONS
         "CATCH_INSTALL_DOCS OFF"
         "CATCH_INSTALL_EXTRAS OFF"
+)
+set(CMAKE_CXX_CPPCHECK cppcheck
+    --suppress=*:*/_deps/*        # ignore everything CPM/FetchContent pulls in
+    # ...your existing flags (--enable=..., --error-exitcode=..., etc.)
 )
 
 # ---- Declare library ----
@@ -80,4 +84,4 @@ elseif(NOT PROJECT_IS_TOP_LEVEL)
   )
 endif()
 
-# include(cmake/dev-mode.cmake)
+include(cmake/dev-mode.cmake)

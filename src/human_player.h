@@ -14,7 +14,7 @@ class HumanPlayer : public Participent {
   /**
    * Get players input between 0 and 6
   */
-  [[nodiscard]] auto get_placement() -> const uint32_t override;
+  [[nodiscard]] auto get_placement() -> uint32_t override;
 
 
 };

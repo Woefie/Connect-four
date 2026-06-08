@@ -24,7 +24,7 @@ public:
   }
 
   virtual ~Participent() = default;
-  virtual auto get_placement() -> const uint32_t = 0;
+  virtual auto get_placement() -> uint32_t = 0;
   
   [[nodiscard]] auto get_number() const -> uint8_t{
     return m_user_number;

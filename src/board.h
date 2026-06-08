@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <array>
+#include <optional>
 #include <utility>
 #include <cstdint>
 
@@ -27,7 +28,7 @@ public:
    * 
    * @return true if value was succesfull in placing the puck
   */
-  [[nodiscard]] auto set_puck(std::pair<uint8_t, uint8_t>& point, uint8_t player) -> bool;
+  [[nodiscard]] auto set_puck(uint8_t column, uint8_t player) -> std::optional<std::pair<uint8_t, uint8_t>>;
 
   /**
    * Check if last set puck has a winning position

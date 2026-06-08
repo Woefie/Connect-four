@@ -20,8 +20,11 @@ target_link_libraries(
 )
 target_compile_features(connect-four_test PRIVATE cxx_std_20)
 
-# include(Catch2/extras/Catch)
-# catch_discover_tests(connect-four_test)
+list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
+include(CTest)
+include(Catch)
+
+catch_discover_tests(connect-four_test)
 
 # ---- End-of-file commands ----
 

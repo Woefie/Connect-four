@@ -71,17 +71,20 @@ void Game::loop()
     // Ask player or computer for a column number
     // Put puck in the board if it is a valid placement
     while (!valid) {
-      point.second = std::visit([this](auto& player) { return player.get_placement(); }, m_players.at(m_state));
+      auto column = std::visit([this](auto& player) { return player.get_placement(); }, m_players.at(m_state));
       
-      valid = m_board.set_puck(point, std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
-      
+      auto result = m_board.set_puck(column, std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
+      if (result) {
+        point = *result;
+        valid = true;
+      }
     }
 
     // Check the latest puck placement if it was winning
     // Return if player won
     if (m_board.check_for_win(point)) {
       m_board.print_board();
-      fmt::print("HumanPlayer {} Won !!!\n", std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
+      fmt::print("Player {} Won !!!\n", std::visit([this](auto& player) { return player.get_number(); }, m_players.at(m_state)));
       return;
     }
 

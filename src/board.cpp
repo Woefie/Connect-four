@@ -1,5 +1,7 @@
 #include <algorithm>
+#include <ranges>
 #include <string_view>
+
 #include "board.h"
 
 #include <fmt/color.h>
@@ -13,33 +15,32 @@ constexpr std::string_view CLEAR {"cls"};
 constexpr std::string_view CLEAR {"clear"};
 #endif
 
-auto Board::set_puck(std::pair<uint8_t, uint8_t>& point, uint8_t player) ->bool
+auto Board::set_puck(uint8_t column, uint8_t player) -> std::optional<std::pair<uint8_t, uint8_t>>
 {
-  point.first = 0;  // Always start at the bottom
-
   // Check if column is not out of bounds and if player is ont greater then 2
-  if (point.second >= BOARD_WIDTH || player > 2) {
-    return false;
+  if (column >= BOARD_WIDTH || player == 0 || player > 2) {
+    return std::nullopt;
+  }
+  // If the top cell is taken, the column is full — nothing to drop.
+  if (m_board.at(BOARD_HEIGHT - 1).at(column) != 0) {
+    return std::nullopt;
   }
 
-  // Check if position !=0 this means that it is a valid placeable spot
-  // if not valid add 1 to row 
-  while (m_board.at(point.first).at(point.second) != 0) {
-    point.first++;
-    if (point.first >= BOARD_HEIGHT) {
-      return false;
-    }
+  // Enter at the top, fall while the cell below is empty (or until the floor).
+  uint8_t row = BOARD_HEIGHT - 1;
+  while (row > 0 && m_board.at(row - 1).at(column) == 0) {
+    --row;
+    print_board();
   }
 
-  // Set puck
-  m_board.at(point.first).at(point.second) = player;
+  m_board.at(row).at(column) = player;
   m_last_player = player;
-  return true;
+  return std::make_optional(std::make_pair(row, column));
 }
 
 auto Board::is_full() -> bool
 {
-// Scan every element(puck) of the board. If all not 0 then its full
+  // Scan every element(puck) of the board. If all not 0 then its full
   for (const auto& row : m_board) {
     for (const auto& elem : row) {
       if (elem == 0) {
@@ -98,7 +99,7 @@ auto Board::check_for_win(std::pair<uint8_t, uint8_t> point) -> bool
       // check if the player got 3 connected stones in a row (4 in total)
       if (connected == 3) {
         return true;
-      } 
+      }
     }
   }
 
@@ -109,20 +110,20 @@ void Board::print_board()
 {
   // clear board
   system(CLEAR.data());
-  
+
   fmt::print("\n╔{:═>{}}╗\n", "", BOARD_WIDTH);
 
   // Loop over each element of the board
   // Reverse loop so 0,0 is at the bottom
-  std::for_each(m_board.rbegin(),
-                m_board.rend(),
+  std::ranges::for_each(std::ranges::reverse_view(m_board),
+               
                 [this](auto& row)
                 {
                   fmt::print("║");
                   for (const auto& elem : row) {
-                    if (elem == 1) {  //print player 1
+                    if (elem == 1) {  // print player 1
                       fmt::print(fg(fmt::color::red), "@");
-                    } else if (elem == 2) {  //print player 2
+                    } else if (elem == 2) {  // print player 2
                       fmt::print(fg(fmt::color::yellow), "0");
 
                     } else {  // if point is empty print -
@@ -134,5 +135,5 @@ void Board::print_board()
 
   fmt::print("╚{:═>{}}╝\n", "", BOARD_WIDTH);
   fmt::print(" 1234567 \n");
-}
 
+}

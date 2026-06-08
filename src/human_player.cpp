@@ -12,7 +12,7 @@ HumanPlayer::HumanPlayer(uint8_t number) : Participent(number)
 {
 }
 
-auto HumanPlayer::get_placement() -> const uint32_t
+auto HumanPlayer::get_placement() -> uint32_t
 {
   uint32_t input {0};
   fmt::print("Enter a number between 1 and 7: ");

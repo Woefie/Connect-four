@@ -2,35 +2,52 @@
 
 #include "board.h"
 
-TEST_CASE("Connect-four board tests", "[library]")
+TEST_CASE("set_puck input validation", "[board]")
 {
   Board board;
-  SECTION("Test Input")
+
+  SECTION("Column 0 is valid (regression for the old '<= 0' bug)")
   {
-    std::pair<uint8_t, uint8_t> point {0, 8};
-    REQUIRE_FALSE(board.set_puck(point, 2));
-    point.second = -2;
-    REQUIRE_FALSE(board.set_puck(point, 2));
-    point.second = 0;
-    REQUIRE(board.set_puck(point, 2));
+    REQUIRE(board.set_puck(0, 1));
   }
-  SECTION("Test player number")
+  SECTION("Last column is valid")
   {
-    std::pair<uint8_t, uint8_t> point {0, 0};
-    REQUIRE_FALSE(board.set_puck(point, 3));
-    REQUIRE_FALSE(board.set_puck(point, -1));
-    REQUIRE(board.set_puck(point, 2));
+    REQUIRE(board.set_puck(BOARD_WIDTH - 1, 1));
+  }
+  SECTION("Column == BOARD_WIDTH is rejected")
+  {
+    REQUIRE_FALSE(board.set_puck(BOARD_WIDTH, 1));
+  }
+  SECTION("Player 0 is rejected")
+  {
+    REQUIRE_FALSE(board.set_puck(0, 0));
+  }
+  SECTION("Player above 2 is rejected")
+  {
+    REQUIRE_FALSE(board.set_puck(0, 3));
+  }
+}
+
+TEST_CASE("set_puck stacks then reports a full column", "[board]")
+{
+  Board board;
+  for (uint8_t i = 0; i < BOARD_HEIGHT; ++i) {
+    INFO("drop #" << (int)i);
+    CHECK(board.set_puck(2, 1));  // BOARD_HEIGHT drops all fit
+  }
+  CHECK_FALSE(board.set_puck(2, 1));  // one more must fail
+}
+
+TEST_CASE("set_puck can fill the whole board", "[board]")
+{
+  Board board;
+  REQUIRE_FALSE(board.is_full());
+
+  for (uint8_t col = 0; col < BOARD_WIDTH; ++col) {
+    for (uint8_t i = 0; i < BOARD_HEIGHT; ++i) {
+      CHECK(board.set_puck(col, 1));
+    }
   }
 
-  SECTION("Test board fullness")
-  {
-    REQUIRE_FALSE(board.is_full());
-    for (size_t i = 0; i < 6; i++) {
-      for (size_t j = 0; j < 7; j++) {
-        std::pair<uint8_t, uint8_t> point {i, j};
-        board.set_puck(point, 1);
-      }
-    }
-    REQUIRE(board.is_full());
-  }
+  CHECK(board.is_full());
 }
